@@ -67,14 +67,15 @@ class Sender:
             return
         global TOKEN
         r = send1(alert, self.token)
+        print(f"attempt post 1:{r}")
         r = json.loads(r.content)
         if 'error' in r and r['error'] == 'invalid_token':
             self.token = TOKEN
             r = send1(alert, self.token)
+            print(f"attempt post 2:{r}")
             r = json.loads(r.content)
             if 'error' in r and r['error'] == 'invalid_token':
                 self.token = get_token()
-        print(r)
         return r
             
 
