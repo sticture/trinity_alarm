@@ -1,7 +1,6 @@
 from trinity_requests import Sender
 
 sender = Sender()
-sender.token = 0
 alert = {
     'alert_type': '208',
     'time': '0',
