@@ -83,17 +83,17 @@ class Sender:
         return r
 
 
-if __name__ == '__main__':
-    sender = Sender()
-    sender.token = 0
-    alert = {
-        'alert_type': '208',
-        'time': '0',
-        'img_url': '0',
-        'video_url': '0',
-        'data': {}
-    }
-
-    for i in range(3):
-        r = sender.send(alert)
-        print(r)
+#if __name__ == '__main__':
+    # sender = Sender()
+    # sender.token = 0
+    # alert = {
+    #     'alert_type': '208',
+    #     'time': '0',
+    #     'img_url': '0',
+    #     'video_url': '0',
+    #     'data': {}
+    # }
+    #
+    # for i in range(3):
+    #     r = sender.send(alert)
+    #     print(r)

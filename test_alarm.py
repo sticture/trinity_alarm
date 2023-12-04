@@ -7,7 +7,6 @@ alert = {
     'img_url': '0',
     'video_url': '0',
     'data': {
-        "name": "test alarm"
     }
 }
 sender.send(alert)
