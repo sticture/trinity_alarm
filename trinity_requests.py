@@ -15,13 +15,14 @@ def get_token():
         'password': 'trinity@123',
         'grant_type': 'password',
     }
-    r = requests.post(url, headers=headers, data=data)
-    print(f"token response:{r.content}")
-    token = json.loads(r.content)['access_token']
+    resp = requests.post(url, headers=headers, data=data)
+    print(f"token response:{resp.content}")
+    token = json.loads(resp.content)['access_token']
+    print(token)
     return token
 
 
-TOKEN = get_token()
+# TOKEN = get_token()
 # ALGO_LIST = ('waving_hands', 'violence') #, 'clothing', 'crowd', 'face', 'loiter', 'mask', 'sociald', 'vehicle', 'violence')
 ALGO_LIST = ('451', '289', '253', '208', '292', '281', '279', '275', '268', '266', '262', '261', '501')
 
