@@ -18,7 +18,6 @@ def get_token():
     resp = requests.post(url, headers=headers, data=data)
     print(f"token response:{resp.content}")
     token = json.loads(resp.content)['access_token']
-    print(token)
     return token
 
 
@@ -79,6 +78,8 @@ class Sender:
         js = json.loads(r.content)
         if 'error' in js and js['error'] == 'invalid_token':
             self.token = get_token()
+            # attempt once again
+            send1(alert, self.token)
         return r
 
 

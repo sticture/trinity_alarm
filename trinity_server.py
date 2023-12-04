@@ -5,9 +5,6 @@ from trinity_requests import Sender
 
 clients = set()
 sender = Sender()
-sender.token = 0
-
-
 async def handler(websocket, path):
     clients.add(websocket)
     print(websocket)
