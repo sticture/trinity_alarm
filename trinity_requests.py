@@ -66,6 +66,7 @@ class Sender:
         if alert['alert_type'] not in ('451','289','253','208','292','281','279','275','268','266','262','261','501'): # ('waving_hands','violence'): #no_helmet', 'loiter', 'mask', 'sociald','violence'):
             return
         global TOKEN
+        print(f"token:{self.token}")
         r = send1(alert, self.token)
         print(f"attempt post 1:{r}")
         r = json.loads(r.content)
