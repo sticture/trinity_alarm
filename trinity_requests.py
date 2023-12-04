@@ -74,7 +74,7 @@ class Sender:
             return
         print(f"token:{self.token}")
         r = send1(alert, self.token)
-        print(f"attempt post response:{r}")
+        print(f"attempt post response:{r.content}")
         js = json.loads(r.content)
         if 'error' in js and js['error'] == 'invalid_token':
             self.token = get_token()
