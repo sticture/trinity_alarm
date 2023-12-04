@@ -15,7 +15,7 @@ def get_token():
             'grant_type':'password',
             }
     r = requests.post(url, headers=headers, data=data)
-    print(r.content)
+    print(f"token response:{r.content}")
     token = json.loads(r.content)['access_token']
     return token
 
