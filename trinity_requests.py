@@ -83,7 +83,7 @@ def send_alarm():
         'deviceId': '00-18-8A-34-06-A1'
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=payload,verify=False)
     return response
 
 
