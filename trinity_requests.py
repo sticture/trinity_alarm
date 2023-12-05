@@ -29,7 +29,7 @@ ALGO_LIST = ('451', '289', '253', '208', '292', '281', '279', '275', '268', '266
 def send1(alert, token):
     url = 'https://tcocapp.trinityiot.in/HTTPProtAdaptorService/rest/VMSServices/VMSAnalyticsAlerts/32'
     headers = {
-        #'Authorization': f'bearer {token}',
+        # 'Authorization': f'bearer {token}',
         'Content-Type': 'application/json',
         'deviceId': '1'
     }
@@ -62,6 +62,31 @@ def send1(alert, token):
     return r
 
 
+def send_alarm():
+    url = "https://tiothub/HTTPProtAdaptorService/data/services/pushData"
+
+    payload = json.dumps({
+        "cameraId": "1",
+        "cameraNumber": "00-18-8A-34-06-A1",
+        "pointName": "Cam-0",
+        "eventTime": "2/16/2018 11:37:55 AM",
+        "alertMessage": "Road blockage",
+        "alertType": 0,
+        "eventDetails1": "DVM Motion Detected(MiskStreet1EntryCamera)",
+        "eventDetails2": "siteid=1,cameraid=1,clipkey={8ad8e7c5-c86e-4f2f-8727-8882e4f8fd25}",
+        "eventDetails3": "Motion",
+        "eventDetails4": "Active",
+        "eventDetails5": None
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'deviceId': '00-18-8A-34-06-A1'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response
+
+
 class Sender:
     def __init__(self):
         self.token = get_token()
@@ -70,10 +95,11 @@ class Sender:
     def send(self, alert):
         # ('waving_hands','violence'): #no_helmet', 'loiter', 'mask', 'sociald','violence'):
         if alert['alert_type'] not in (
-        '451', '289', '253', '208', '292', '281', '279', '275', '268', '266', '262', '261','501'):
+                '451', '289', '253', '208', '292', '281', '279', '275', '268', '266', '262', '261', '501'):
             return
         print(f"token:{self.token}")
-        r = send1(alert, self.token)
+        # r = send1(alert, self.token)
+        r = send_alarm()
         print(f"attempt post response:{r.content}")
         js = json.loads(r.content)
         if 'error' in js and js['error'] == 'invalid_token':
@@ -82,18 +108,17 @@ class Sender:
             send1(alert, self.token)
         return r
 
-
-#if __name__ == '__main__':
-    # sender = Sender()
-    # sender.token = 0
-    # alert = {
-    #     'alert_type': '208',
-    #     'time': '0',
-    #     'img_url': '0',
-    #     'video_url': '0',
-    #     'data': {}
-    # }
-    #
-    # for i in range(3):
-    #     r = sender.send(alert)
-    #     print(r)
+# if __name__ == '__main__':
+# sender = Sender()
+# sender.token = 0
+# alert = {
+#     'alert_type': '208',
+#     'time': '0',
+#     'img_url': '0',
+#     'video_url': '0',
+#     'data': {}
+# }
+#
+# for i in range(3):
+#     r = sender.send(alert)
+#     print(r)
