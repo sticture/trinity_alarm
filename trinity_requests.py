@@ -29,7 +29,7 @@ ALGO_LIST = ('451', '289', '253', '208', '292', '281', '279', '275', '268', '266
 def send1(alert, token):
     url = 'https://tcocapp.trinityiot.in/HTTPProtAdaptorService/rest/VMSServices/VMSAnalyticsAlerts/32'
     headers = {
-        'Authorization': f'bearer {token}',
+        #'Authorization': f'bearer {token}',
         'Content-Type': 'application/json',
         'deviceId': '1'
     }
