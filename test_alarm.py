@@ -15,7 +15,7 @@ import requests
 
 
 def send_alarm():
-    url = "https://10.10.10.211/HTTPProtAdaptorService/data/services/pushData"
+    url = "https://tiothub/HTTPProtAdaptorService/data/services/pushData"
 
     payload = json.dumps({
         "cameraId": "1",
