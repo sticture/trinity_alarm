@@ -2,6 +2,7 @@ from trinity_requests import Sender
 import json
 import requests
 
+
 # sender = Sender()
 # alert = {
 #     'alert_type': '208',
@@ -18,24 +19,51 @@ def send_alarm():
     url = "https://tiothub/HTTPProtAdaptorService/data/services/pushData"
 
     payload = json.dumps({
-        "cameraId": "1",
-        "cameraNumber": "00-18-8A-34-06-A1",
-        "pointName": "Cam-0",
-        "eventTime": "2/16/2018 11:37:55 AM",
-        "alertMessage": "Road blockage",
-        "alertType": 0,
-        "eventDetails1": "DVM Motion Detected(MiskStreet1EntryCamera)",
-        "eventDetails2": "siteid=1,cameraid=1,clipkey={8ad8e7c5-c86e-4f2f-8727-8882e4f8fd25}",
-        "eventDetails3": "Motion",
-        "eventDetails4": "Active",
-        "eventDetails5": None
+
+        "deviceId": "1",
+
+        "eventTime": "1562079524",
+
+        "alertMessage": "Object Detection",
+
+        "eventType ": "315",
+
+        "severity": "P1",
+
+        "geocoordinates": {
+
+            "latitude": 12.12332,
+
+            "longitude": "77.2222",
+
+            "location": "Shivajinagar,Banglore"},
+
+        "visualInfo": {
+
+            "imageUrl": ["http://14.53.45.23:68/img1.jpg", "http://14.53.45.23:68/img2.jpg"],
+
+            "videoUrl": ["http://14.53.45.23:68/video1.mp4", "http://14.53.45.23:68/video2.mp4"]},
+
+        "objectDetails ": {
+
+            "vehicleNumber": "KA12 2244",
+
+            "type ": "CAR",
+
+            "colour": "9538512588",
+
+            "listedAs": "Theft",
+
+            "images": ["http://14.53.45.23:68/img1.jpg", "http://14.53.45.23:68/img2.jpg"]}
+
     })
     headers = {
         'Content-Type': 'application/json',
         'deviceId': '00-18-8A-34-06-A1'
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload,verify=False)
+    response = requests.request("POST", url, headers=headers, data=payload, verify=False)
     return response
+
 
 print(send_alarm().content)
