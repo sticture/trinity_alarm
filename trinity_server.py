@@ -24,7 +24,7 @@ async def handler(websocket, path):
 
 
 async def start_server():
-    async with websockets.serve(handler, "0.0.0.0", 7666):
+    async with websockets.serve(handler, "0.0.0.0", 7658):
         await asyncio.Future()
 
 
