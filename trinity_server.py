@@ -14,7 +14,7 @@ async def handler(websocket, path):
         async for message in websocket:
             print(f"ws message{message}")
             resp = send_alarm(message)
-            print(f"trigger alarm resp:{resp}")
+            print(f"trigger alarm resp:{resp.content}")
             # for client in clients:
             #     await client.send(message)
     except Exception as e:
