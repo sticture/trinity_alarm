@@ -1,28 +1,20 @@
 import asyncio
 import json
 import websockets
-from trinity_requests import Sender
+from alarm_trigger import send_alarm
 
 clients = set()
-sender = Sender()
+
+
 async def handler(websocket, path):
     clients.add(websocket)
     print(websocket)
 
     try:
         async for message in websocket:
-            print(message)
-            data = json.loads(message)
-            alert = {
-                'alert_type': '208',
-                'time': '123',
-                'img_url': '0',
-                'video_url': '0',
-                'data': {
-                    "name": data.get("event_name","unknown")
-                }
-            }
-            sender.send(alert)
+            print(f"ws message{message}")
+            resp = send_alarm(message)
+            print(f"trigger alarm resp:{resp}")
             # for client in clients:
             #     await client.send(message)
     except Exception as e:
@@ -32,7 +24,7 @@ async def handler(websocket, path):
 
 
 async def start_server():
-    async with websockets.serve(handler, "0.0.0.0", 7866):
+    async with websockets.serve(handler, "0.0.0.0", 7666):
         await asyncio.Future()
 
 
